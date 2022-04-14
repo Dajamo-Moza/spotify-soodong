@@ -1,55 +1,93 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { StringifyOptions } from "querystring";
 import styled from "styled-components";
 import { getTopAlbums } from "../lib/spotify";
+import useSWR from "swr";
 
-interface Artist {
-  name: string;
-}
+const Home: NextPage = () => {
+  const { data: topAlbums, error } = useSWR("/api/songs", getTopAlbums);
 
-interface AlbumImage {
-  url: string;
-}
+  if (error) {
+    return <div>Error happened...</div>;
+  }
 
-interface TopSong {
-  artists: Artist[];
-  name: string;
-  images: AlbumImage[];
-}
-interface IProps {
-  topAlbums: TopSong[];
-}
+  if (!topAlbums) {
+    return <div>Loading...</div>;
+  }
 
-const Home: NextPage<IProps> = ({ topAlbums }) => {
+  console.log(topAlbums);
+
   return (
-    <div>
+    <Wrapper>
       <Head>
         <title>Spotify</title>
         <meta name="description" content="Spotify app using Spotify Open API" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {topAlbums.map((album, index) => (
-        <div key={index}>
-          <Image src={album.images[0].url} width={300} height={300} />
-          <h1>{index + 1}</h1>
-          <h1>{album.artists[0].name}</h1>
-          <h1>{album.name}</h1>
-        </div>
+        <AlbumWrapper key={index}>
+          <AlbumImage>
+            <Image src={album.images[0].url} width={120} height={120} />
+          </AlbumImage>
+          <AlbumContent>
+            <AlbumRank>{index + 1}</AlbumRank>
+            <AlbumDescription>
+              <AlbumName>{album.name}</AlbumName>
+              <AlbumArtist>{album.artists[0].name}</AlbumArtist>
+            </AlbumDescription>
+          </AlbumContent>
+        </AlbumWrapper>
       ))}
-    </div>
+    </Wrapper>
   );
 };
 
-export async function getStaticProps() {
-  const topAlbums = await getTopAlbums();
+const Wrapper = styled.div`
+  padding: 90px;
+`;
 
-  return {
-    props: {
-      topAlbums,
-    },
-  };
-}
+const AlbumWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const AlbumImage = styled.div`
+  padding: 0px 30px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding-bottom: 13px;
+`;
+
+const AlbumContent = styled.div`
+  display: flex;
+  border-bottom: 1px solid black;
+  margin-left: 37px;
+`;
+
+const AlbumRank = styled.p`
+  font-size: 80px;
+  font-weight: 700;
+  width: 120px;
+`;
+
+const AlbumDescription = styled.div`
+  width: 557px;
+  height: 99px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const AlbumName = styled.div`
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 5px;
+`;
+
+const AlbumArtist = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+`;
 
 export default Home;
