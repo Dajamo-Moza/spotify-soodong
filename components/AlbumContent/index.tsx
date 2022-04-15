@@ -1,15 +1,7 @@
 import React from "react";
 import { TopSong } from "../../shared/type";
 import AlbumMenu from "../AlbumMenu";
-import {
-  Artist,
-  Button,
-  ButtonWrapper,
-  Description,
-  Name,
-  Rank,
-  Wrapper,
-} from "./styles";
+import { Artist, Description, Name, Rank, Wrapper } from "./styles";
 
 interface IProps {
   album: TopSong;

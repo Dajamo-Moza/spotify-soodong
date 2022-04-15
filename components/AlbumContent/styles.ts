@@ -30,16 +30,3 @@ export const Artist = styled.div`
   font-size: 16px;
   font-weight: 700;
 `;
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-`;
-
-export const Button = styled.button`
-  width: 40px;
-  height: 20px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
-`;

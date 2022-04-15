@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Wrapper } from "./styles";
+import Button from "../Button";
+import { Wrapper } from "./styles";
 
 const AlbumMenu = () => {
   return (
