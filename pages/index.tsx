@@ -4,6 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { getTopAlbums } from "../lib/spotify";
 import useSWR from "swr";
+import SideMenu from "../components/SideMenu";
 
 const Home: NextPage = () => {
   const { data: topAlbums, error } = useSWR("/api/songs", getTopAlbums);
@@ -25,29 +26,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Spotify app using Spotify Open API" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MenuWrapper>
-        <Menu>SIGN OUT</Menu>
-        <Menu>RECOMMENDATIONS</Menu>
-        <SearchWrapper>
-          <SearchInput type="text" />
-          <Button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="3"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </Button>
-        </SearchWrapper>
-      </MenuWrapper>
+      <SideMenu />
       <ChartWrapper>
         {topAlbums.map((album, index) => (
           <AlbumWrapper key={index}>
@@ -106,31 +85,6 @@ const Wrapper = styled.div`
   display: flex;
   padding: 90px;
   background-color: #02c567;
-`;
-
-const MenuWrapper = styled.div`
-  width: 170px;
-  border-left: 1px solid black;
-  padding-left: 20px;
-  padding-right: 60px;
-`;
-
-const Menu = styled.p`
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 60px;
-  cursor: pointer;
-`;
-
-const SearchWrapper = styled.div`
-  display: flex;
-  border-bottom: 1px solid black;
-`;
-
-const SearchInput = styled.input`
-  outline: none;
-  background-color: transparent;
-  border: none;
 `;
 
 const Button = styled.button`
