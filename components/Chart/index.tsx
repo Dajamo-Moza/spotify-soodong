@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { TopSong } from "../../shared/type";
 import {
   AlbumArtist,
   AlbumButtonWrapper,
@@ -12,20 +13,6 @@ import {
   Button,
   ChartWrapper,
 } from "./styles";
-
-interface Artist {
-  name: string;
-}
-
-interface AlbumImage {
-  url: string;
-}
-
-interface TopSong {
-  artists: Artist[];
-  name: string;
-  images: AlbumImage[];
-}
 
 interface IProps {
   topAlbums: TopSong[];

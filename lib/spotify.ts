@@ -1,20 +1,7 @@
 import axios from "axios";
+import { TopSong } from "../shared/type";
 
 const BASE_URL = "https://api.spotify.com/v1";
-
-interface Artist {
-  name: string;
-}
-
-interface AlbumImage {
-  url: string;
-}
-
-interface TopSong {
-  artists: Artist[];
-  name: string;
-  images: AlbumImage[];
-}
 
 export const getTopAlbums = async (): Promise<TopSong[] | null> => {
   const response = await axios(`${BASE_URL}/browse/new-releases?country=KR`, {
