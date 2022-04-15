@@ -25,26 +25,127 @@ const Home: NextPage = () => {
         <meta name="description" content="Spotify app using Spotify Open API" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {topAlbums.map((album, index) => (
-        <AlbumWrapper key={index}>
-          <AlbumImage>
-            <Image src={album.images[0].url} width={120} height={120} />
-          </AlbumImage>
-          <AlbumContent>
-            <AlbumRank>{index + 1}</AlbumRank>
-            <AlbumDescription>
-              <AlbumName>{album.name}</AlbumName>
-              <AlbumArtist>{album.artists[0].name}</AlbumArtist>
-            </AlbumDescription>
-          </AlbumContent>
-        </AlbumWrapper>
-      ))}
+      <MenuWrapper>
+        <Menu>SIGN OUT</Menu>
+        <Menu>RECOMMENDATIONS</Menu>
+        <SearchWrapper>
+          <SearchInput type="text" />
+          <Button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="3"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </Button>
+        </SearchWrapper>
+      </MenuWrapper>
+      <ChartWrapper>
+        {topAlbums.map((album, index) => (
+          <AlbumWrapper key={index}>
+            <AlbumImage>
+              <Image src={album.images[0].url} width={120} height={120} />
+            </AlbumImage>
+            <AlbumContent>
+              <AlbumRank>{index + 1}</AlbumRank>
+              <AlbumDescription>
+                <AlbumName>{album.name}</AlbumName>
+                <AlbumArtist>{album.artists[0].name}</AlbumArtist>
+              </AlbumDescription>
+              <AlbumButtonWrapper>
+                <Button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                </Button>
+                <Button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </Button>
+              </AlbumButtonWrapper>
+            </AlbumContent>
+          </AlbumWrapper>
+        ))}
+      </ChartWrapper>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  display: flex;
   padding: 90px;
+  background-color: #02c567;
+`;
+
+const MenuWrapper = styled.div`
+  width: 170px;
+  border-left: 1px solid black;
+  padding-left: 20px;
+  padding-right: 60px;
+`;
+
+const Menu = styled.p`
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  cursor: pointer;
+`;
+
+const SearchWrapper = styled.div`
+  display: flex;
+  border-bottom: 1px solid black;
+`;
+
+const SearchInput = styled.input`
+  outline: none;
+  background-color: transparent;
+  border: none;
+`;
+
+const Button = styled.button`
+  width: 40px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+const ChartWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 `;
 
 const AlbumWrapper = styled.div`
@@ -88,6 +189,10 @@ const AlbumName = styled.div`
 const AlbumArtist = styled.div`
   font-size: 16px;
   font-weight: 700;
+`;
+
+const AlbumButtonWrapper = styled.div`
+  display: flex;
 `;
 
 export default Home;
