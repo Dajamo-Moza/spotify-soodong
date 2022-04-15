@@ -11,7 +11,7 @@ import {
   AlbumRank,
   AlbumWrapper,
   Button,
-  ChartWrapper,
+  Wrapper,
 } from "./styles";
 
 interface IProps {
@@ -20,7 +20,7 @@ interface IProps {
 
 const Chart = ({ topAlbums }: IProps) => {
   return (
-    <ChartWrapper>
+    <Wrapper>
       {topAlbums.map((album, index) => (
         <AlbumWrapper key={index}>
           <AlbumImage>
@@ -69,7 +69,7 @@ const Chart = ({ topAlbums }: IProps) => {
           </AlbumContent>
         </AlbumWrapper>
       ))}
-    </ChartWrapper>
+    </Wrapper>
   );
 };
 
