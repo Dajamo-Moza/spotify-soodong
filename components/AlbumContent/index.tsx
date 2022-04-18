@@ -16,7 +16,7 @@ const AlbumContent = ({ album, rank }: IProps) => {
         <Name>{album.name}</Name>
         <Artist>{album.artists[0].name}</Artist>
       </Description>
-      <AlbumMenu album={album} />
+      <AlbumMenu album={album} rank={rank} />
     </Wrapper>
   );
 };

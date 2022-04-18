@@ -1,17 +1,28 @@
 import React from "react";
 import { getCertainAlbum } from "../../lib/spotify";
 import { TopSong } from "../../shared/type";
+import useStore from "../../store";
 import Button from "../Button";
 import { Wrapper } from "./styles";
 
 interface IProps {
   album: TopSong;
+  rank: number;
 }
 
-const AlbumMenu = ({ album }: IProps) => {
+const AlbumMenu = ({ album, rank }: IProps) => {
+  const toggleCurrentRank = useStore((state) => state.toggleCurrentRank);
+  const toggleCurrentTrack = useStore((state) => state.toggleCurrentTrack);
+
+  const onClickTracks = async () => {
+    const tracks = await getCertainAlbum(album.id);
+    toggleCurrentRank(rank);
+    toggleCurrentTrack(tracks);
+  };
+
   return (
     <Wrapper>
-      <Button>
+      <Button onClick={onClickTracks}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
@@ -27,7 +38,7 @@ const AlbumMenu = ({ album }: IProps) => {
           />
         </svg>
       </Button>
-      <Button onClick={() => getCertainAlbum(album.id)}>
+      <Button>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
