@@ -1,8 +1,14 @@
 import React from "react";
+import { getCertainAlbum } from "../../lib/spotify";
+import { TopSong } from "../../shared/type";
 import Button from "../Button";
 import { Wrapper } from "./styles";
 
-const AlbumMenu = () => {
+interface IProps {
+  album: TopSong;
+}
+
+const AlbumMenu = ({ album }: IProps) => {
   return (
     <Wrapper>
       <Button>
@@ -21,7 +27,7 @@ const AlbumMenu = () => {
           />
         </svg>
       </Button>
-      <Button>
+      <Button onClick={() => getCertainAlbum(album.id)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"

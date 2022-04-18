@@ -10,4 +10,10 @@ export interface TopSong {
   artists: Artist[];
   name: string;
   images: AlbumImage[];
+  id: string;
+}
+
+export interface Track {
+  name: string;
+  id: string;
 }
