@@ -27,8 +27,6 @@ export const getCertainAlbum = async (id: string): Promise<Track[] | null> => {
       },
     });
 
-    console.log(response.data.items);
-
     return response.data.items;
   } catch (e) {
     return null;

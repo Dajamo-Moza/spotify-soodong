@@ -12,11 +12,15 @@ interface IProps {
 
 const AlbumMenu = ({ album, rank }: IProps) => {
   const toggleCurrentRank = useStore((state) => state.toggleCurrentRank);
+  const toggleCurrentAlbumImage = useStore(
+    (state) => state.toggleCurrentAlbumImage
+  );
   const toggleCurrentTrack = useStore((state) => state.toggleCurrentTrack);
 
   const onClickTracks = async () => {
     const tracks = await getCertainAlbum(album.id);
     toggleCurrentRank(rank);
+    toggleCurrentAlbumImage(album.images[0].url);
     toggleCurrentTrack(tracks);
   };
 

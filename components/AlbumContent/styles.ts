@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ isClicked: boolean }>`
   display: flex;
   border-bottom: 1px solid black;
   margin-left: 37px;
+  width: ${(props) => (props.isClicked ? "1000px" : "")};
 `;
 
 export const Rank = styled.p`
