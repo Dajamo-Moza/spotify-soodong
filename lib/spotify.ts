@@ -18,7 +18,9 @@ export const getTopAlbums = async (): Promise<ITopSong[] | null> => {
   }
 };
 
-export const getCertainAlbum = async (id: string): Promise<ITrack[] | null> => {
+export const getTracksByAlbumId = async (
+  id: string
+): Promise<ITrack[] | null> => {
   try {
     const response = await axios(`${BASE_URL}/albums/${id}/tracks`, {
       method: "GET",

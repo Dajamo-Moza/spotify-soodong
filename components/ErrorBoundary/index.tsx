@@ -1,19 +1,19 @@
 import React, { Component, ErrorInfo, ReactNode } from "react";
 
-interface Props {
+interface IProps {
   children: ReactNode;
 }
 
-interface State {
+interface IState {
   hasError: boolean;
 }
 
-class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
+class ErrorBoundary extends Component<IProps, IState> {
+  public state: IState = {
     hasError: false,
   };
 
-  public static getDerivedStateFromError(_: Error): State {
+  public static getDerivedStateFromError(_: Error): IState {
     return { hasError: true };
   }
 
