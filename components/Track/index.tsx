@@ -1,12 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-import { Track } from "../../shared/type";
+import { ITrack } from "../../shared/type";
 import Button from "../Button";
 import { TrackInfo, Wrapper } from "./styles";
 
 interface IProps {
   number: number;
-  track: Track;
+  track: ITrack;
 }
 
 const Track = ({ number, track }: IProps) => {

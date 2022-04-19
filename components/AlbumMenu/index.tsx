@@ -1,12 +1,12 @@
 import React from "react";
 import { getCertainAlbum } from "../../lib/spotify";
-import { TopSong } from "../../shared/type";
+import { ITopSong } from "../../shared/type";
 import useStore from "../../store";
 import Button from "../Button";
 import { Wrapper } from "./styles";
 
 interface IProps {
-  album: TopSong;
+  album: ITopSong;
   rank: number;
 }
 
