@@ -1,11 +1,32 @@
 import React from "react";
+import { getCertainAlbum } from "../../lib/spotify";
+import { TopSong } from "../../shared/type";
+import useStore from "../../store";
 import Button from "../Button";
 import { Wrapper } from "./styles";
 
-const AlbumMenu = () => {
+interface IProps {
+  album: TopSong;
+  rank: number;
+}
+
+const AlbumMenu = ({ album, rank }: IProps) => {
+  const toggleCurrentRank = useStore((state) => state.toggleCurrentRank);
+  const toggleCurrentAlbumImage = useStore(
+    (state) => state.toggleCurrentAlbumImage
+  );
+  const toggleCurrentTrack = useStore((state) => state.toggleCurrentTrack);
+
+  const onClickTracks = async () => {
+    const tracks = await getCertainAlbum(album.id);
+    toggleCurrentRank(rank);
+    toggleCurrentAlbumImage(album.images[0].url);
+    toggleCurrentTrack(tracks);
+  };
+
   return (
     <Wrapper>
-      <Button>
+      <Button onClick={onClickTracks}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"

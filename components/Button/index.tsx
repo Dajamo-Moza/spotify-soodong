@@ -3,10 +3,11 @@ import { Wrapper } from "./styles";
 
 interface IProps {
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
-const Button = ({ children }: IProps) => {
-  return <Wrapper>{children}</Wrapper>;
+const Button = ({ children, onClick }: IProps) => {
+  return <Wrapper onClick={onClick}>{children}</Wrapper>;
 };
 
 export default Button;
