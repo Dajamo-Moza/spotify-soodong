@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import styled from "styled-components";
 import SideMenu from "../components/SideMenu";
 import Chart from "../components/Chart";
 import { Suspense } from "react";
 import ErrorBoundary from "../components/ErrorBoundary";
 
-const Home: NextPage = () => {
+interface IProps {}
+
+const Home: NextPage<IProps> = () => {
   return (
     <Wrapper>
       <SideMenu />

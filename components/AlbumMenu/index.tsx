@@ -1,27 +1,25 @@
 import React from "react";
-import { getCertainAlbum } from "../../lib/spotify";
-import { TopSong } from "../../shared/type";
+import { getTracksByAlbumId } from "../../lib/spotify";
+import { ITopSong } from "../../shared/type";
 import useStore from "../../store";
 import Button from "../Button";
 import { Wrapper } from "./styles";
 
 interface IProps {
-  album: TopSong;
+  album: ITopSong;
   rank: number;
 }
 
 const AlbumMenu = ({ album, rank }: IProps) => {
-  const toggleCurrentRank = useStore((state) => state.toggleCurrentRank);
-  const toggleCurrentAlbumImage = useStore(
-    (state) => state.toggleCurrentAlbumImage
-  );
-  const toggleCurrentTrack = useStore((state) => state.toggleCurrentTrack);
+  const setCurrentRank = useStore((state) => state.setCurrentRank);
+  const setCurrentAlbumImage = useStore((state) => state.setCurrentAlbumImage);
+  const setCurrentTrack = useStore((state) => state.setCurrentTrack);
 
   const onClickTracks = async () => {
-    const tracks = await getCertainAlbum(album.id);
-    toggleCurrentRank(rank);
-    toggleCurrentAlbumImage(album.images[0].url);
-    toggleCurrentTrack(tracks);
+    const tracks = await getTracksByAlbumId(album.id);
+    setCurrentRank(rank);
+    setCurrentAlbumImage(album.images[0].url);
+    setCurrentTrack(tracks);
   };
 
   return (

@@ -1,19 +1,19 @@
-interface Artist {
+interface IArtist {
   name: string;
 }
 
-interface AlbumImage {
+interface IAlbumImage {
   url: string;
 }
 
-export interface TopSong {
-  artists: Artist[];
+export interface ITopSong {
+  artists: IArtist[];
   name: string;
-  images: AlbumImage[];
+  images: IAlbumImage[];
   id: string;
 }
 
-export interface Track {
+export interface ITrack {
   name: string;
   id: string;
 }

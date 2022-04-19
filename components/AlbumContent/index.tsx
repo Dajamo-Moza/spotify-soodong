@@ -1,11 +1,11 @@
 import React from "react";
-import { TopSong } from "../../shared/type";
+import { ITopSong } from "../../shared/type";
 import useStore from "../../store";
 import AlbumMenu from "../AlbumMenu";
 import { Artist, Description, Name, Rank, Wrapper } from "./styles";
 
 interface IProps {
-  album: TopSong;
+  album: ITopSong;
   rank: number;
 }
 
