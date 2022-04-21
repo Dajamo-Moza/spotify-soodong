@@ -69,3 +69,24 @@ export const addCertainTrackToPlaylist = async (
     return null;
   }
 };
+
+export const addNewPlaylist = async (playlistName: string) => {
+  try {
+    await axios(
+      `${BASE_URL}/users/${process.env.NEXT_PUBLIC_USER_ID}/playlists`,
+      {
+        method: "POST",
+        data: {
+          name: playlistName,
+          public: false,
+        },
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
+        },
+      }
+    );
+    return "추가 성공";
+  } catch (e) {
+    return null;
+  }
+};
