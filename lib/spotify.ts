@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ITopSong, ITrack } from "../shared/type";
+import { IPlaylist, ITopSong, ITrack } from "../shared/type";
 
 const BASE_URL = "https://api.spotify.com/v1";
 
@@ -30,6 +30,41 @@ export const getTracksByAlbumId = async (
     });
 
     return response.data.items;
+  } catch (e) {
+    return null;
+  }
+};
+
+export const getPlaylists = async (): Promise<IPlaylist[] | null> => {
+  try {
+    const response = await axios(`${BASE_URL}/me/playlists`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
+      },
+    });
+
+    return response.data.items;
+  } catch (e) {
+    return null;
+  }
+};
+
+export const addCertainTrackToPlaylist = async (
+  trackId: string,
+  playlistId: string
+) => {
+  try {
+    await axios(
+      `${BASE_URL}/playlists/${playlistId}/tracks?position=0&uris=${trackId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
+        },
+      }
+    );
+    return "추가 성공";
   } catch (e) {
     return null;
   }

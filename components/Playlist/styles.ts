@@ -9,7 +9,8 @@ export const Wrapper = styled.div`
   background-color: #3a3a3a;
   color: #02c567;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const CloseButton = styled.button`
@@ -27,5 +28,21 @@ export const CloseButton = styled.button`
 export const Title = styled.h1`
   font-size: 20px;
   margin-top: 20px;
+  font-weight: 700;
+`;
+
+export const CertainPlaylistWrapper = styled.div`
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  padding: 10px;
+  border: 2px solid #02c567;
+  margin: 10px 0px;
+  background: white;
+  cursor: pointer;
+`;
+
+export const PlaylistName = styled.h1`
+  font-size: 16px;
   font-weight: 700;
 `;
