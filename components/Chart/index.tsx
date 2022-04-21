@@ -13,18 +13,18 @@ const Chart = () => {
   });
   const currentRank = useStore((state) => state.currentRank);
   const currentAlbumImage = useStore((state) => state.currentAlbumImage);
-  const currentTrack = useStore((state) => state.currentTrack);
+  const currentAlbum = useStore((state) => state.currentAlbum);
 
   return (
     <Wrapper>
       {topAlbums?.map((album, index) => (
         <div key={album.id}>
           <Album album={album} rank={index + 1} />
-          {currentRank === index + 1 && currentTrack?.length && (
+          {currentRank === index + 1 && currentAlbum?.length && (
             <SelectedAlbumWrapper>
               <Image src={currentAlbumImage} width={450} height={450} />
               <TracksWrapper>
-                {currentTrack.map((track, index) => (
+                {currentAlbum.map((track, index) => (
                   <Track key={track.id} number={index + 1} track={track} />
                 ))}
               </TracksWrapper>

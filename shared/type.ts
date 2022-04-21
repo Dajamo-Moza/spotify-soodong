@@ -13,7 +13,7 @@ export interface ITopSong {
   id: string;
 }
 
-export interface ITrack {
+export interface IAlbum {
   name: string;
   id: string;
 }
