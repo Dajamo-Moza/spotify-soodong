@@ -13,13 +13,13 @@ interface IProps {
 const AlbumMenu = ({ album, rank }: IProps) => {
   const setCurrentRank = useStore((state) => state.setCurrentRank);
   const setCurrentAlbumImage = useStore((state) => state.setCurrentAlbumImage);
-  const setCurrentTrack = useStore((state) => state.setCurrentTrack);
+  const setCurrentAlbum = useStore((state) => state.setCurrentAlbum);
 
   const onClickTracks = async () => {
     const tracks = await getTracksByAlbumId(album.id);
     setCurrentRank(rank);
     setCurrentAlbumImage(album.images[0].url);
-    setCurrentTrack(tracks);
+    setCurrentAlbum(tracks);
   };
 
   return (

@@ -1,13 +1,15 @@
 import create from "zustand";
-import { IAlbum } from "../shared/type";
+import { ITrack } from "../shared/type";
 
 interface CurrentTrackState {
   currentRank: number;
   setCurrentRank: (rank: number) => void;
   currentAlbumImage: string;
   setCurrentAlbumImage: (imgUrl: string) => void;
-  currentAlbum: IAlbum[] | null;
-  setCurrentAlbum: (tracks: IAlbum[] | null) => void;
+  currentAlbum: ITrack[] | null;
+  setCurrentAlbum: (tracks: ITrack[] | null) => void;
+  currentTrack: ITrack | null;
+  setCurrentTrack: (track: ITrack) => void;
 }
 
 const useStore = create<CurrentTrackState>((set) => ({
@@ -16,7 +18,9 @@ const useStore = create<CurrentTrackState>((set) => ({
   currentAlbumImage: "",
   setCurrentAlbumImage: (imgUrl: string) => set({ currentAlbumImage: imgUrl }),
   currentAlbum: null,
-  setCurrentAlbum: (tracks: IAlbum[] | null) => set({ currentAlbum: tracks }),
+  setCurrentAlbum: (tracks: ITrack[] | null) => set({ currentAlbum: tracks }),
+  currentTrack: null,
+  setCurrentTrack: (track: ITrack) => set({ currentTrack: track }),
 }));
 
 export default useStore;
