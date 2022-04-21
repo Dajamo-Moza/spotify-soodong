@@ -10,6 +10,8 @@ interface CurrentTrackState {
   setCurrentAlbum: (tracks: ITrack[] | null) => void;
   currentTrack: ITrack | null;
   setCurrentTrack: (track: ITrack) => void;
+  showPlaylists: boolean;
+  setShowPlaylists: (type: boolean) => void;
 }
 
 const useStore = create<CurrentTrackState>((set) => ({
@@ -21,6 +23,8 @@ const useStore = create<CurrentTrackState>((set) => ({
   setCurrentAlbum: (tracks: ITrack[] | null) => set({ currentAlbum: tracks }),
   currentTrack: null,
   setCurrentTrack: (track: ITrack) => set({ currentTrack: track }),
+  showPlaylists: false,
+  setShowPlaylists: (type: boolean) => set({ showPlaylists: type }),
 }));
 
 export default useStore;

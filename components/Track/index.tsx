@@ -11,9 +11,11 @@ interface IProps {
 
 const Track = ({ number, track }: IProps) => {
   const setCurrentTrack = useStore((state) => state.setCurrentTrack);
+  const setShowPlaylists = useStore((state) => state.setShowPlaylists);
 
   const onClickAddTrack = () => {
     setCurrentTrack({ name: track.name, id: `spotify:track:${track.id}` });
+    setShowPlaylists(true);
   };
 
   return (
