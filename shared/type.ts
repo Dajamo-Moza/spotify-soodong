@@ -17,3 +17,8 @@ export interface ITrack {
   name: string;
   id: string;
 }
+
+export interface IPlaylist {
+  name: string;
+  id: string;
+}

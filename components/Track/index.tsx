@@ -1,5 +1,6 @@
 import React from "react";
 import { ITrack } from "../../shared/type";
+import useStore from "../../store";
 import Button from "../Button";
 import { TrackInfo, Wrapper } from "./styles";
 
@@ -9,13 +10,21 @@ interface IProps {
 }
 
 const Track = ({ number, track }: IProps) => {
+  const setCurrentTrack = useStore((state) => state.setCurrentTrack);
+  const setShowPlaylists = useStore((state) => state.setShowPlaylists);
+
+  const onClickAddTrack = () => {
+    setCurrentTrack({ name: track.name, id: `spotify:track:${track.id}` });
+    setShowPlaylists(true);
+  };
+
   return (
     <Wrapper>
       <TrackInfo>
         Track {number} {track.name}
       </TrackInfo>
       <div>
-        <Button>
+        <Button onClick={onClickAddTrack}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"

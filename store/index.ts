@@ -6,8 +6,12 @@ interface CurrentTrackState {
   setCurrentRank: (rank: number) => void;
   currentAlbumImage: string;
   setCurrentAlbumImage: (imgUrl: string) => void;
-  currentTrack: ITrack[] | null;
-  setCurrentTrack: (tracks: ITrack[] | null) => void;
+  currentAlbum: ITrack[] | null;
+  setCurrentAlbum: (tracks: ITrack[] | null) => void;
+  currentTrack: ITrack | null;
+  setCurrentTrack: (track: ITrack) => void;
+  showPlaylists: boolean;
+  setShowPlaylists: (type: boolean) => void;
 }
 
 const useStore = create<CurrentTrackState>((set) => ({
@@ -15,8 +19,12 @@ const useStore = create<CurrentTrackState>((set) => ({
   setCurrentRank: (rank: number) => set({ currentRank: rank }),
   currentAlbumImage: "",
   setCurrentAlbumImage: (imgUrl: string) => set({ currentAlbumImage: imgUrl }),
+  currentAlbum: null,
+  setCurrentAlbum: (tracks: ITrack[] | null) => set({ currentAlbum: tracks }),
   currentTrack: null,
-  setCurrentTrack: (tracks: ITrack[] | null) => set({ currentTrack: tracks }),
+  setCurrentTrack: (track: ITrack) => set({ currentTrack: track }),
+  showPlaylists: false,
+  setShowPlaylists: (type: boolean) => set({ showPlaylists: type }),
 }));
 
 export default useStore;

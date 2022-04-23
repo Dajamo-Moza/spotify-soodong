@@ -4,10 +4,14 @@ import SideMenu from "../components/SideMenu";
 import Chart from "../components/Chart";
 import { Suspense } from "react";
 import ErrorBoundary from "../components/ErrorBoundary";
+import useStore from "../store";
+import Playlist from "../components/Playlist";
 
 interface IProps {}
 
 const Home: NextPage<IProps> = () => {
+  const showPlaylists = useStore((state) => state.showPlaylists);
+
   return (
     <Wrapper>
       <SideMenu />
@@ -16,6 +20,7 @@ const Home: NextPage<IProps> = () => {
           <Chart />
         </Suspense>
       </ErrorBoundary>
+      {showPlaylists && <Playlist />}
     </Wrapper>
   );
 };
