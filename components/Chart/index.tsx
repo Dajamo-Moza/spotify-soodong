@@ -4,16 +4,27 @@ import { useQuery } from "react-query";
 import { getTopAlbums } from "../../lib/spotify";
 import useStore from "../../store";
 import Album from "../Album";
+import Loading from "../Loading";
 import Track from "../Track";
 import { Wrapper, SelectedAlbumWrapper, TracksWrapper } from "./styles";
 
 const Chart = () => {
-  const { data: topAlbums } = useQuery("topAlbums", getTopAlbums, {
-    suspense: true,
-  });
+  const {
+    data: topAlbums,
+    isLoading,
+    error,
+  } = useQuery("topAlbums", getTopAlbums);
   const currentRank = useStore((state) => state.currentRank);
   const currentAlbumImage = useStore((state) => state.currentAlbumImage);
   const currentAlbum = useStore((state) => state.currentAlbum);
+
+  if (error) {
+    return <div>Something went wrong...</div>;
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Wrapper>

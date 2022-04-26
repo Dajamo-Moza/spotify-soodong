@@ -12,6 +12,8 @@ interface CurrentTrackState {
   setCurrentTrack: (track: ITrack) => void;
   showPlaylists: boolean;
   setShowPlaylists: (type: boolean) => void;
+  showSearchBar: boolean;
+  setShowSearchBar: (type: boolean) => void;
 }
 
 const useStore = create<CurrentTrackState>((set) => ({
@@ -25,6 +27,8 @@ const useStore = create<CurrentTrackState>((set) => ({
   setCurrentTrack: (track: ITrack) => set({ currentTrack: track }),
   showPlaylists: false,
   setShowPlaylists: (type: boolean) => set({ showPlaylists: type }),
+  showSearchBar: false,
+  setShowSearchBar: (type: boolean) => set({ showSearchBar: type }),
 }));
 
 export default useStore;
