@@ -1,10 +1,19 @@
 import React from "react";
-import { Wrapper } from "./styles";
+import useStore from "../../store";
+import { CloseButton, ContentInput, Title, Wrapper } from "./styles";
 
 const SearchBar = () => {
+  const setShowSearchBar = useStore((state) => state.setShowSearchBar);
+
+  const onClickSearchBar = () => {
+    setShowSearchBar(false);
+  };
+
   return (
     <Wrapper>
-      <h1>SearchBar</h1>
+      <CloseButton onClick={onClickSearchBar}>✕</CloseButton>
+      <Title>Looking for ...</Title>
+      <ContentInput />
     </Wrapper>
   );
 };
