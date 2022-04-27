@@ -1,12 +1,19 @@
 import React from "react";
+import useStore from "../../store";
 import Button from "../Button";
 import { Input, Wrapper } from "./styles";
 
 const Search = () => {
+  const setShowSearchBar = useStore((state) => state.setShowSearchBar);
+
+  const onClickSearchBar = () => {
+    setShowSearchBar(true);
+  };
+
   return (
     <Wrapper>
       <Input type="text" />
-      <Button>
+      <Button onClick={onClickSearchBar}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"

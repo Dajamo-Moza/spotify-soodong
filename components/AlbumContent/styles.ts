@@ -21,13 +21,13 @@ export const Description = styled.div`
   justify-content: center;
 `;
 
-export const Name = styled.div`
+export const Name = styled.p`
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 5px;
 `;
 
-export const Artist = styled.div`
+export const Artist = styled.p`
   font-size: 16px;
   font-weight: 700;
 `;
